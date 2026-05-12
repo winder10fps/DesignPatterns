@@ -13,6 +13,7 @@ namespace MDK_DesignPatternsPractice
             //FactoryMethod();
             //Prototype();
             //Singleton();
+
             //Adapter();
             //Bridge();
             //Composite();
@@ -20,6 +21,8 @@ namespace MDK_DesignPatternsPractice
             //Facade();
             //Flyweight();
             //Proxy();
+
+            ChainOfResponsibility();
         }
     }
 }
