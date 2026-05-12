@@ -80,7 +80,7 @@ namespace MDK_DesignPatternsPractice.StructuralPatterns
 
             var folder1 = new Folder("docs");
             folder1.Add(new File("resume.txt", 213));
-            folder1.Add(new File("portfolio.docx",28));
+            folder1.Add(new File("portfolio.docx", 28));
 
             var folder2 = new Folder("games");
             folder2.Add(new File("cs2.exe", 1452));
@@ -135,16 +135,52 @@ namespace MDK_DesignPatternsPractice.StructuralPatterns
             theatre.EndMovie();
         }
 
-
+        /// <summary>
+        /// <para><b>Приспособленец (Flyweight)</b></para>
+        /// <para>Позволяет вместить больше объектов в память, разделяя общее состояние между множеством объектов.</para>
+        /// <para/>
+        /// <b>Когда применять:</b>
+        /// <br/>1. Огромное количество однотипных объектов
+        /// <br/>2. Память критична, и большую часть состояния можно вынести за пределы объекта
+        /// <para/>
+        /// <b>Пример из реальной жизни:</b> Огромный лес из 1 млн деревьев. Вместо хранения координат и типа дерева для каждого — храним только уникальные координаты, а тип дерева (модель, цвет, текстура) выносим в общее хранилище.
+        /// </summary>
         public static void Flyweight()
         {
+            var factory = new CharacterFactory();
+            var chars = new List<(CharacterFlyweight, Position)>()
+            {
+                (factory.GetCharacter('H', "Arial", 12), new Position(0,0)),
+                (factory.GetCharacter('e', "Arial", 12), new Position(10,0)),
+                (factory.GetCharacter('l', "Arial", 12), new Position(20,0)),
+                (factory.GetCharacter('l', "Arial", 12), new Position(30,0)),
+                (factory.GetCharacter('o', "Arial", 12), new Position(40,0)),
+            };
 
+            foreach (var (ch, position) in chars)
+            {
+                ch.Display(position);
+            }
+
+            Console.WriteLine("Created objects: " + CharacterFlyweight.GetCountObjects());
         }
 
-
+        /// <summary>
+        /// <para><b>Заместитель (Proxy)</b></para>
+        /// <para>Предоставляет суррогатный объект, контролирующий доступ к другому объекту.</para>
+        /// <para/>
+        /// <b>Когда применять:</b>
+        /// <br/>1. Ленивая загрузка (виртуальный прокси) — объект создаётся только когда реально нужен
+        /// <br/>2. Контроль доступа (защитный прокси) — проверка прав перед вызовом
+        /// <br/>3. Логирование, кэширование (умный прокси) — дополнительная логика до/после вызова
+        /// <para/>
+        /// <b>Пример из реальной жизни:</b> Банковская карта — это прокси к деньгам на счету. Карта контролирует доступ, логирует операции, может иметь лимиты.
+        /// </summary>
         public static void Proxy()
         {
-
+            var resourse = new ResourseProxy("viki.com");
+            resourse.Display();
         }
     }
+
 }

@@ -18,6 +18,8 @@ namespace MDK_DesignPatternsPractice
             //Composite();
             //Decorator();
             //Facade();
+            //Flyweight();
+            //Proxy();
         }
     }
 }
