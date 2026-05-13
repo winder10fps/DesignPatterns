@@ -22,7 +22,8 @@ namespace MDK_DesignPatternsPractice
             //Flyweight();
             //Proxy();
 
-            ChainOfResponsibility();
+            //ChainOfResponsibility();
+            Command();
         }
     }
 }

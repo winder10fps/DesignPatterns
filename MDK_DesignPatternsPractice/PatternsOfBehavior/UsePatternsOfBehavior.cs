@@ -38,5 +38,33 @@ namespace MDK_DesignPatternsPractice.PatternsOfBehavior
             basic.Handle(SupportLevels.Manager);
             basic.Handle(SupportLevels.Manager + 1);
         }
+
+        /// <summary>
+        /// <para><b>Команда (Command)</b></para>
+        /// <para>Превращает запрос в объект, позволяя передавать его, ставить в очередь, логировать и поддерживать отмену.</para>
+        /// <para/>
+        /// <b>Когда применять:</b>
+        /// <br/>1. Нужно параметризовать объекты действиями (разные команды для разных кнопок)
+        /// <br/>2. Нужна поддержка отмены/повтора (Undo/Redo) в редакторах, играх, приложениях
+        /// <br/>3. Нужно ставить запросы в очередь, логировать их или отправлять по сети
+        /// <para/>
+        /// <b>Пример из реальной жизни:</b> Заказ в ресторане — официант берёт заказ (команду), повар выполняет, а при отмене клиент может отказаться.
+        /// </summary>
+        public static void Command()
+        {
+            var redactor = new Redactor();
+            var insert = new InsertTextCommand(redactor);
+            var delete = new DeleteTextCommand(redactor);
+            var remote = new RemoteControl();
+
+            remote.ExecuteCommand(insert);
+            Console.WriteLine(redactor.Text);
+            remote.ExecuteCommand(delete);
+            Console.WriteLine(redactor.Text);
+            remote.ExecuteCommand(delete);
+            Console.WriteLine(redactor.Text);
+            remote.Undo();
+            Console.WriteLine(redactor.Text);
+        }
     } 
 }
