@@ -23,7 +23,9 @@ namespace MDK_DesignPatternsPractice
             //Proxy();
 
             //ChainOfResponsibility();
-            Command();
+            //Command();
+            //Interpreter();
+            //Iterator();
         }
     }
 }
