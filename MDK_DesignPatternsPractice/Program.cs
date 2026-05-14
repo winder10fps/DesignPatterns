@@ -6,26 +6,22 @@ namespace MDK_DesignPatternsPractice
 {
     internal class Program
     {
-        static void Main() 
+        static void Main()
         {
-            //AbstractFactory();
-            //Builder();
-            //FactoryMethod();
-            //Prototype();
-            //Singleton();
+            Action[] methods = [
+                AbstractFactory, Builder, FactoryMethod, Prototype, Singleton,
+                Adapter, Bridge, Composite, Decorator, Facade, Flyweight, Proxy,
+                ChainOfResponsibility, Command, Interpreter, Iterator, Mediator,
+                Memento, Observer, State, Strategy, TemplateMethod, Visitor
+            ];
 
-            //Adapter();
-            //Bridge();
-            //Composite();
-            //Decorator();
-            //Facade();
-            //Flyweight();
-            //Proxy();
-
-            //ChainOfResponsibility();
-            //Command();
-            //Interpreter();
-            //Iterator();
+            foreach (var method in methods)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\n[{method.Method.Name}]");
+                Console.ResetColor();
+                method();
+            }
         }
     }
 }
